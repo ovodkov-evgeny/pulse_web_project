@@ -49,4 +49,39 @@ $(document).ready(function(){
 			$('.overlay, #order').fadeIn();
 		})
 	});
+
+	// Validating
+
+	function validateForms(form) {
+		$(form).validate({
+			rules: {
+				name: {
+					required: true,
+					minlength: 2
+				},
+				phone: "required",
+				email: {
+					required: true,
+					email: true
+				}
+			},
+			messages: {
+				name: {
+					required: "Пожалуйста, введите имя",
+					minlength: jQuery.validator.format("Количество символов должно быть больше {0}!")
+				},
+				phone: "Пожалуйста, введите номер телефона",
+				email: {
+					required: "Пожалуйста, введите e-mail",
+					email: "Неправильный e-mail!"
+				}
+			}
+		});
+	};
+
+	validateForms('#consultation-form');
+	validateForms('#consultation form');
+	validateForms('#order form');
+
+	$('input[name=phone]').mask("+7 (999) 999-99-99");
 });
